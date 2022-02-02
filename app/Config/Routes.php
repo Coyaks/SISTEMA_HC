@@ -35,6 +35,7 @@ $routes->setAutoRoute(true);
 //MIS RUTAS
 $routes->get('/', 'Home::index');
 $routes->get('/usuario', 'UsuarioController::index');
+$routes->get('/dashboard', 'DashboardController::index');
 // $routes->get('/hola', 'UsuarioController::index');
 
 /*
