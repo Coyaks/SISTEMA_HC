@@ -10,20 +10,17 @@ Usuario
 <!-- DATATABLES + B4 CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="public/css/estilosUsuario.css">
 
 <?= $this->endSection() ?>
 
 
 <?= $this->section('contenido') ?>
 <div class="container-fluid">
-    <h1>MODULO Usuario</h1>
     <!-- CARD -->
-    <div class="card">
+    <!-- <div class="card">
         <div class="card-header">
-            <h3>Usuarios</h3>
-
             <div class="row">
-                <div class="col">Sample Data</div>
                 <div class="col text-right">
                     <button type="button" name="add_record" id="btnNuevoUsuario" class="btn btn-success btn-sm rounded-pill"><i class="fas fa-plus"></i> Nuevo</button>
                 </div>
@@ -44,7 +41,32 @@ Usuario
                 </table>
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <fieldset class="border-fielset p-2">
+        <legend class="w-auto text-primary">
+            <h3 class="m-0">Usuarios</h3>
+        </legend>
+        <div class="row mb-3">
+            <div class="col-lg-12">
+                <button type="button" name="add_record" id="btnNuevoUsuario" class="btn btn-success btn-sm rounded-pill"><i class="fas fa-plus"></i> Nuevo</button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tablaUsuario" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </fieldset>
 </div>
 
 
@@ -82,8 +104,8 @@ Usuario
                     <input type="hidden" name="hidden_id" id="hidden_id" />
                     <input type="hidden" name="action" id="action" value="Add" />
 
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" name="submit" id="submit_button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+                    <button type="submit" name="submit" id="submit_button" class="btn btn-success"><i class="fal fa-save"></i> Guardar</button>
                 </div>
             </div>
         </form>
@@ -92,10 +114,6 @@ Usuario
 <?= $this->endSection() ?>
 
 <?= $this->section('js') ?>
-
-<!-- DATATABLES JQUERY + B4 JS -->
-<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url('public/js/mainCrudUsuario.js') ?>"></script>
 
 <?= $this->endSection() ?>

@@ -33,7 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 //MIS RUTAS
-$routes->get('/', 'Home::index');
+$routes->get('/', 'LoginController::index');
 $routes->get('/usuario', 'UsuarioController::index');
 $routes->get('/dashboard', 'DashboardController::index');
 // $routes->get('/hola', 'UsuarioController::index');

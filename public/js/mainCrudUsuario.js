@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('#tablaUsuario').DataTable({
-        //language: "public/lib/spanish_datatables.json",
         language: {
             "url": "public/lib/spanish_datatables.json"
         },
@@ -9,7 +8,46 @@ $(document).ready(function () {
         "ajax": {
             url: "UsuarioController/fetch",
             type: "POST",
-        }
+        },
+        "lengthMenu": [
+            [5, 10, 50, -1],
+            [5, 10, 50, "All"]
+        ],
+        //Botones para exportar
+        dom: "B<'row'<'col-sm-12 col-md-6 mt-2'l><'col-sm-12 col-md-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        buttons: [{
+                "extend": 'copyHtml5',
+                "text": "<i class='far fa-copy'></i> Copiar",
+                "titleAttr": "Copiar",
+                "className": "btn btn-secondary mr-2",
+            },
+            {
+                "extend": 'excelHtml5',
+                "text": "<i class='fas fa-file-excel'></i> Excel",
+                "titleAttr": "Exportar a Excel",
+                "className": "btn btn-success mr-2",
+            },
+            {
+                "extend": 'pdfHtml5',
+                "text": "<i class='fas fa-file-pdf'></i> PDF",
+                "titleAttr": "Exportar a PDF",
+                "className": "btn btn-danger mr-2",
+            },
+            {
+                "extend": 'csvHtml5',
+                "text": "<i class='fas fa-file-csv'></i> CSV",
+                "titleAttr": "Exportar a CSV",
+                "className": "btn btn-info mr-2",
+            },
+            {
+                "extend": 'print',
+                "text": "<i class='fas fa-print'></i> Imprimir",
+                "titleAttr": "Imprimir archivo",
+                "className": "btn btn-secondary",
+            }
+        ]
     });
 
     $('#btnNuevoUsuario').click(function () {
@@ -110,7 +148,7 @@ $(document).ready(function () {
                         $('#tablaUsuario').DataTable().ajax.reload();
                         setTimeout(function () {
                             $('#message').html('');
-    
+
                         }, 5000);
                     }
                 })

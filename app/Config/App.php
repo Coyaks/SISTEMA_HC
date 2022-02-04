@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost/CODEIGNITER4/ci4_admin_lte/';
+    public $baseURL = 'http://localhost/CODEIGNITER4/sistema_comercial/';
 
     /**
      * --------------------------------------------------------------------------
