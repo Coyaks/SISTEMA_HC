@@ -10,7 +10,7 @@ Usuario
 <!-- DATATABLES + B4 CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="public/css/estilosUsuario.css">
+<link rel="stylesheet" href="assets/css/estilosUsuario.css">
 
 <?= $this->endSection() ?>
 
@@ -69,7 +69,6 @@ Usuario
     </fieldset>
 </div>
 
-
 <!-- Modal Usuario-->
 <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -78,9 +77,10 @@ Usuario
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <!-- <span class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </span> -->
+                    <img src="<?php echo base_url('assets/img/close.png')?>" alt="close" class="close" data-dismiss="modal" aria-label="Close">
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -114,6 +114,6 @@ Usuario
 <?= $this->endSection() ?>
 
 <?= $this->section('js') ?>
-<script src="<?= base_url('public/js/mainCrudUsuario.js') ?>"></script>
+<script src="<?= base_url('assets/js/mainCrudUsuario.js') ?>"></script>
 
 <?= $this->endSection() ?>

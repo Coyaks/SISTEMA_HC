@@ -20,7 +20,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS CUSTOM -->
-    <link rel="stylesheet" href="<?php echo base_url('public/css/style-login.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style-login.css')?>">
 
 </head>
 
@@ -29,7 +29,7 @@
         <div class="box-login shadow-lg border p-5 rounded">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <img src="<?php echo base_url('public/img/skoy_color.png')?>" alt="Logo" id="logoSkoy">
+                    <img src="<?php echo base_url('assets/img/skoy_color.png')?>" alt="Logo" id="logoSkoy">
                 </div>
             </div>
             <div class="row">
@@ -101,7 +101,7 @@
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <!-- Instantiate single textfield component rendered in the document -->
     <script src="js/app_material.js"></script>
-    <script src="<?php echo base_url('public/js/app_material.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/app_material.js')?>"></script>
 
     <script>
         $(document).ready(function () {

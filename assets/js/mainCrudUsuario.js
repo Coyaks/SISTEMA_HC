@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#tablaUsuario').DataTable({
         language: {
-            "url": "public/lib/spanish_datatables.json"
+            "url": "assets/lib/spanish_datatables.json"
         },
         "order": [],
         "serverSide": true,
