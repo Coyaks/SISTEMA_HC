@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
-    <!-- Required styles for Material Web -->
+    <!-- MATERIAL DESIGN CSS -->
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 
     <!-- MATERIAL ICONS FULL -->
@@ -97,10 +97,9 @@
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         referrerpolicy="no-referrer"></script>
-    <!-- Required Material Web JavaScript library -->
+    <!-- Material Design Web JS -->
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <!-- Instantiate single textfield component rendered in the document -->
-    <script src="js/app_material.js"></script>
     <script src="<?php echo base_url('assets/js/app_material.js')?>"></script>
 
     <script>

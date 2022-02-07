@@ -48,6 +48,7 @@ return [
     'numeric'               => 'The {field} field must contain only numbers.',
     'regex_match'           => 'The {field} field is not in the correct format.',
     'required'              => 'The {field} field is required.',
+    //'required'              => 'El campo {field} es requerido.',
     'required_with'         => 'The {field} field is required when {param} is present.',
     'required_without'      => 'The {field} field is required when {param} is not present.',
     'string'                => 'The {field} field must be a valid string.',

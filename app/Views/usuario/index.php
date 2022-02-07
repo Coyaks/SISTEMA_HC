@@ -17,32 +17,7 @@ Usuario
 
 <?= $this->section('contenido') ?>
 <div class="container-fluid">
-    <!-- CARD -->
-    <!-- <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col text-right">
-                    <button type="button" name="add_record" id="btnNuevoUsuario" class="btn btn-success btn-sm rounded-pill"><i class="fas fa-plus"></i> Nuevo</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="tablaUsuario" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div> -->
-
+    <span id="message">hola</span>
     <fieldset class="border-fielset p-2">
         <legend class="w-auto text-primary">
             <h3 class="m-0">Usuarios</h3>
@@ -64,6 +39,7 @@ Usuario
                         <th>Acciones</th>
                     </tr>
                 </thead>
+                <!-- SIN tbody -->
             </table>
         </div>
     </fieldset>
@@ -77,26 +53,43 @@ Usuario
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
-                    <!-- <span class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </span> -->
-                    <img src="<?php echo base_url('assets/img/close.png')?>" alt="close" class="close" data-dismiss="modal" aria-label="Close">
+                    <!-- icon close custom -->
+                    <img src="<?php echo base_url('assets/img/close.png') ?>" alt="close" class="close" data-dismiss="modal" aria-label="Close">
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <input type="text" name="name" id="name" class="form-control" />
-                        <span id="name_error" class="text-danger"></span>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="form__div">
+                                    <input type="text" class="form__input" name="name" id="name" placeholder=" ">
+                                    <label for="" class="form__label">Nombre</label>
+                                </div>
+                                <!-- validacion elegante -->
+                                <span id="name_error" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" name="email" id="email" class="form-control" />
-                        <span id="email_error" class="text-danger"></span>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="form__div">
+                                    <input type="text" class="form__input" name="email" id="email" placeholder=" ">
+                                    <label for="" class="form__label">Email</label>
+                                </div>
+                                <span id="email_error" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="text" class="form-control" name="password" id="password">
-                        <span id="gender_error" class="text-danger"></span>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form__div">
+                                <input type="text" class="form__input" name="password" id="password" placeholder=" ">
+                                <label for="" class="form__label">Password</label>
+                            </div>
+                            <span id="gender_error" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -105,7 +98,9 @@ Usuario
                     <input type="hidden" name="action" id="action" value="Add" />
 
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                    <button type="submit" name="submit" id="submit_button" class="btn btn-success"><i class="fal fa-save"></i> Guardar</button>
+                    
+                    <!-- OJO: button tambien tine value="Add" or "Edit" -->
+                    <button type="submit" name="submit" id="btnGuardar" class="btn btn-success"><i class="fal fa-save"></i> Guardar</button>
                 </div>
             </div>
         </form>
@@ -115,5 +110,4 @@ Usuario
 
 <?= $this->section('js') ?>
 <script src="<?= base_url('assets/js/mainCrudUsuario.js') ?>"></script>
-
 <?= $this->endSection() ?>

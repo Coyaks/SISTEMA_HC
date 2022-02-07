@@ -55,41 +55,35 @@ $(document).ready(function () {
         $('.modal-title').text('Agregar Usuario');
         $('.modal-header').css('background-color', '#343a40');
         $('.modal-header').css('color', '#fff');
+        // validacion errors
         $('#name_error').text('');
         $('#email_error').text('');
         $('#gender_error').text('');
+
         $('#action').val('Add');
-        $('#submit_button').val('Add');
+        $('#btnGuardar').val('Add');
         $('#modalUsuario').modal('show');
     });
 
     // INSERT
-    $('#formUsuario').on('submit', function (event) {
-        event.preventDefault();
+    $('#formUsuario').submit(function (e) { 
+        e.preventDefault();
         $.ajax({
             url: "UsuarioController/action",
             method: "POST",
             data: $(this).serialize(),
             dataType: "JSON",
 
-            beforeSend: function () {
-                $('#submit_button').val('wait...');
-                $('#submit_button').attr('disabled', 'disabled');
-            },
+            // beforeSend: function () {
+            // },
             success: function (data) {
-                $('#submit_button').val('Add');
-                $('#submit_button').attr('disabled', false);
                 if (data.error == 'yes') {
                     $('#name_error').text(data.name_error);
                     $('#email_error').text(data.email_error);
                     $('#gender_error').text(data.gender_error);
                 } else {
                     $('#modalUsuario').modal('hide');
-                    $('#message').html(data.message);
                     $('#tablaUsuario').DataTable().ajax.reload();
-                    setTimeout(function () {
-                        $('#message').html('');
-                    }, 5000);
                 }
             }
         })
@@ -117,7 +111,8 @@ $(document).ready(function () {
                 $('#email_error').text('');
                 $('#gender_error').text('');
                 $('#action').val('Edit');
-                $('#submit_button').val('Edit');
+                $('#btnGuardar').val('Edit');
+                // abrir modal con datos cargados para editar
                 $('#modalUsuario').modal('show');
                 $('#hidden_id').val(id);
             }

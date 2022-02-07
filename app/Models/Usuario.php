@@ -14,8 +14,7 @@ class Usuario extends Model{
         return $builder;
     }
 
-    public function acciones_usuario()
-	{
+    public function acciones_usuario(){
 		$action_button = function($row){
 			return '
 				<button type="button" name="edit" class="btn btn-warning btn-sm edit" data-id="'.$row['id'].'"><i class="fas fa-edit"></i></button>

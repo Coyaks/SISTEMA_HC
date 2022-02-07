@@ -22,13 +22,14 @@ class UsuarioController extends BaseController
 
         $data_table->setTable($crudModel->tablaUsuario())
             ->setDefaultOrder("id", "DESC")
-            ->setSearch(["nombre", "email","password"])
+            ->setSearch(["nombre", "email", "password"])
             ->setOrder(["id", "nombre", "email", "password"])
             ->setOutput(["id", "nombre", "email", "password", $crudModel->acciones_usuario()]);
         return $data_table->getDatatable();
     }
 
-    function action(){
+    function action()
+    {
         if ($this->request->getVar('action')) {
             helper(['form', 'url']);
             $name_error = '';
@@ -37,16 +38,26 @@ class UsuarioController extends BaseController
             $error = 'no';
             $success = 'no';
             $message = '';
-
-            $error = $this->validate([
-                'name'    =>    'required|min_length[3]',
-                'email'    =>    'required|valid_email',
-                'password' =>    'required'
-            ]);
-
-            if (!$error) {
+            // validate: Metodo de validacion propio de CI4
+            //OJO: $error_bool return "TRUE" si todos los campos son CORRECTOS !!
+            $error_bool = $this->validate(
+                [
+                    'name'    =>    'required|min_length[3]',
+                    'email'    =>    'required|valid_email',
+                    'password' =>    'required'
+                ],
+                [   // Errors
+                    'name' => [
+                        'required' => 'El nombre es obligatorio',
+                        //'min_length'=> 'Muy corto'
+                    ]
+                ]
+            );
+            // !$error_bool
+            if ($error_bool == false) {
                 $error = 'yes';
                 $validation = \Config\Services::validation();
+                
                 if ($validation->getError('name')) {
                     $name_error = $validation->getError('name');
                 }
@@ -59,16 +70,17 @@ class UsuarioController extends BaseController
                     $gender_error = $validation->getError('password');
                 }
             } else {
+                //NO HAY ERROR
                 $success = 'yes';
                 if ($this->request->getVar('action') == 'Add') {
                     $crudModel = new Usuario();
-                    // ========== INSERT INTO ========== 
+                    // ========== INSERT INTO NOMBRE DE TABLA========== 
                     $crudModel->save([
-                        'nombre'        =>  $this->request->getVar('name'),
-                        'email'       =>    $this->request->getVar('email'),
-                        'password'    =>    $this->request->getVar('password')
+                        'nombre'      =>  $this->request->getVar('name'),
+                        'email'       =>  $this->request->getVar('email'),
+                        'password'    =>  $this->request->getVar('password')
                     ]);
-                    $message = '<div class="alert alert-success">Usuario agregado</div>';
+                    // $message = '<div class="alert alert-success">Usuario agregado</div>';
                 }
 
                 if ($this->request->getVar('action') == 'Edit') {
@@ -82,20 +94,22 @@ class UsuarioController extends BaseController
                     ];
                     // ========= UPDATE USUARIO ========= 
                     $crudModel->update($id, $data);
-                    $message = '<div class="alert alert-success">Usuario Actualizado</div>';
+                    // $message = '<div class="alert alert-success">Usuario Actualizado</div>';
                 }
             }
 
-            $output = array(
+            //data salida -> Array
+            $data = array(
                 'name_error'    =>    $name_error,
                 'email_error'    =>    $email_error,
                 'gender_error'    =>    $gender_error,
+
                 'error'            =>    $error,
                 'success'        =>    $success,
                 'message'        =>    $message
             );
-
-            echo json_encode($output);
+            //Array -> JSON
+            echo json_encode($data);
         }
     }
 
