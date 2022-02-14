@@ -105,6 +105,7 @@
     <script src="<?php echo base_url('assets/js/app_material.js')?>"></script>
 
     <script>
+        //Logica para show y hiden del icon 'ojo' input password
         $(document).ready(function () {
             $('#icon-view-pass2').click(function (e) {
                 let input_type = $('.toggle-password').attr('type');

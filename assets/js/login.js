@@ -4,14 +4,18 @@ $(document).ready(function () {
         e.preventDefault();
         var dataForm=$(this).serialize();
         console.log(dataForm)
-       
         $.ajax({
             type: "POST",
             url: "LoginController/login",
             data: dataForm,
             //dataType: "JSON",
-            success: function (response) {
-                window.location.href='dashboard'
+            success: function (r) {
+                if(r==1){
+                    window.location.href='dashboard'
+                }else{
+                    console.log("Datos incorrectos")
+                }
+                
             }
         });    
     });

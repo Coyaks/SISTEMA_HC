@@ -30,9 +30,11 @@ class LoginController extends BaseController{
             $session = session();
             $session->set($data);
             //redireccionar
-            return redirect()->to(base_url('/dashboard'))->with('mensaje', '1');
+            //return redirect()->to(base_url('/dashboard'))->with('mensaje', '1');
+            echo 1;
         }else{
-            return redirect()->to(base_url('/'))->with('mensaje','0');
+            //return redirect()->to(base_url('/'))->with('mensaje','0');
+            echo 0;
         }
         // $datos=$login->obtenerUsuario2();
         // $data=[
