@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('#tablaUsuario').DataTable({
         language: {
             "url": "assets/lib/spanish_datatables.json"
@@ -6,9 +7,10 @@ $(document).ready(function () {
         "order": [],
         "serverSide": true,
         "ajax": {
-            url: "UsuarioController/fetch",
+            url: "UsuarioController/fetch_all",
             type: "POST",
         },
+        // custom cantidad filas
         "lengthMenu": [
             [5, 10, 50, -1],
             [5, 10, 50, "All"]
@@ -66,8 +68,9 @@ $(document).ready(function () {
     });
 
     // INSERT
-    $('#formUsuario').submit(function (e) { 
+    $('#formUsuario').submit(function (e) {
         e.preventDefault();
+        // forma elegante de capturar valores de input: $('#formUsuario').serialize();
         $.ajax({
             url: "UsuarioController/action",
             method: "POST",
@@ -84,6 +87,9 @@ $(document).ready(function () {
                 } else {
                     $('#modalUsuario').modal('hide');
                     $('#tablaUsuario').DataTable().ajax.reload();
+
+                    // Toast custom
+                    Alert.success(data.message)    
                 }
             }
         })
@@ -102,7 +108,8 @@ $(document).ready(function () {
             success: function (data) {
                 $('#name').val(data.nombre);
                 $('#email').val(data.email);
-                $('#gender').val(data.password);
+                $('#password').val(data.password);
+
                 $('.modal-title').text('Editar Usuario');
                 $('.modal-header').css('background-color', '#3164ff');
                 $('.modal-header').css('color', '#fff');
@@ -122,6 +129,7 @@ $(document).ready(function () {
     //DELETE
     $(document).on('click', '.delete', function () {
         var id = $(this).data('id');
+        
         Swal.fire({
             //title: 'Are you sure?',
             text: "¿Está seguro de eliminar?",
@@ -139,12 +147,10 @@ $(document).ready(function () {
                         id: id
                     },
                     success: function (data) {
-                        $('#message').html(data);
-                        $('#tablaUsuario').DataTable().ajax.reload();
-                        setTimeout(function () {
-                            $('#message').html('');
-
-                        }, 5000);
+                        if (data == 1) {
+                            $('#tablaUsuario').DataTable().ajax.reload();
+                            Alert.success('Se eliminó correctamente!')
+                        }
                     }
                 })
             }

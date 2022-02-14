@@ -6,7 +6,8 @@ use CodeIgniter\Model;
 class Usuario extends Model{
 
     protected $table='usuarios';
-    protected $primaryKey='id';
+    // protected $primaryKey='id';
+	// "$allowedFields" -> que campos quiero que se inserten y actualicen
     protected $allowedFields=['nombre','email','password'];
 
     public function tablaUsuario(){

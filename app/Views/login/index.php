@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,70 +26,73 @@
 <body>
     <div class="contenedor">
         <div class="box-login shadow-lg border p-5 rounded">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <img src="<?php echo base_url('assets/img/skoy_color.png')?>" alt="Logo" id="logoSkoy">
+           <form id="formLogin">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="<?php echo base_url('assets/img/skoy_color.png')?>" alt="Logo" id="logoSkoy">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="text-center">Log In</h2>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="text-center">Log In</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <label class="mdc-text-field mdc-text-field--outlined w-100">
-                        <span class="mdc-notched-outline">
-                            <span class="mdc-notched-outline__leading"></span>
-                            <span class="mdc-notched-outline__notch">
-                                <span class="mdc-floating-label" id="my-label-id">Email</span>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="mdc-text-field mdc-text-field--outlined w-100">
+                            <span class="mdc-notched-outline">
+                                <span class="mdc-notched-outline__leading"></span>
+                                <span class="mdc-notched-outline__notch">
+                                    <span class="mdc-floating-label" id="my-label-id">Email</span>
+                                </span>
+                                <span class="mdc-notched-outline__trailing"></span>
                             </span>
-                            <span class="mdc-notched-outline__trailing"></span>
-                        </span>
-                        <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id">
-                        <span class="material-icons-outlined mdc-text-field__icon mdc-text-field__icon--trailing">
-                            face
-                        </span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- row 2 -->
-            <div class="row mt-3">
-                <div class="col-lg-12">
-                    <label class="mdc-text-field mdc-text-field--outlined w-100 text-field-pass">
-                        <span class="mdc-notched-outline">
-                            <span class="mdc-notched-outline__leading"></span>
-                            <span class="mdc-notched-outline__notch">
-                                <span class="mdc-floating-label" id="my-label-id">Password</span>
-                            </span>
-                            <span class="mdc-notched-outline__trailing"></span>
-                        </span>
-                        <input type="password" class="mdc-text-field__input toggle-password"
-                            aria-labelledby="my-label-id">
-                        <!-- ICON EYE -->
-                        <span id="icon-view-pass2">
+                            <!-- Email -->
+                            <input type="text" class="mdc-text-field__input" id="email" name="email"  autofocus autocomplete="off">
                             <span class="material-icons-outlined mdc-text-field__icon mdc-text-field__icon--trailing">
-                                visibility_off
+                                face
                             </span>
-                        </span>
-
-                    </label>
+                        </label>
+                    </div>
                 </div>
-
-                <div class="col-lg-12">
-                    <p class="text-end mt-3 link-custom"><a href="#" class="text-primario">¿Olvidaste tu contraseña?</a></p>
+    
+                <!-- row 2 -->
+                <div class="row mt-3">
+                    <div class="col-lg-12">
+                        <label class="mdc-text-field mdc-text-field--outlined w-100 text-field-pass">
+                            <span class="mdc-notched-outline">
+                                <span class="mdc-notched-outline__leading"></span>
+                                <span class="mdc-notched-outline__notch">
+                                    <span class="mdc-floating-label" id="my-label-id">Password</span>
+                                </span>
+                                <span class="mdc-notched-outline__trailing"></span>
+                            </span>
+                            <!-- Password -->
+                            <input type="password" class="mdc-text-field__input toggle-password" id="password" name="password" autocomplete="off">
+                            <!-- ICON EYE -->
+                            <span id="icon-view-pass2">
+                                <span class="material-icons-outlined mdc-text-field__icon mdc-text-field__icon--trailing">
+                                    visibility_off
+                                </span>
+                            </span>
+    
+                        </label>
+                    </div>
+    
+                    <div class="col-lg-12">
+                        <p class="text-end mt-3 link-custom"><a href="#" class="text-primario">¿Olvidaste tu contraseña?</a></p>
+                    </div>
                 </div>
-            </div>
-
-            <!-- row 2 -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <button class="btn btnLogin w-100 rounded-pill">Iniciar Sesión</button>
-                    <p class="mt-2 text-center link-custom">¿No tiene una cuenta? <a href="#" class="text-primario">Abrir cuenta</a>
-                    </p>
+    
+                <!-- row 2 -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btnLogin w-100 rounded-pill">Iniciar Sesión</button>
+                        <p class="mt-2 text-center link-custom">¿No tiene una cuenta? <a href="#" class="text-primario">Abrir cuenta</a>
+                        </p>
+                    </div>
                 </div>
-            </div>
+           </form>
         </div>
     </div>
 
@@ -116,6 +118,8 @@
             });
         });
     </script>
+
+    <script src="assets/js/login.js"></script>
 </body>
 
 </html>

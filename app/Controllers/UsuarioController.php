@@ -6,16 +6,13 @@ use App\Models\Usuario;
 
 use monken\TablesIgniter;
 
-class UsuarioController extends BaseController
-{
+class UsuarioController extends BaseController{
 
-    public function index()
-    {
+    public function index(){
         return view('usuario/index');
     }
 
-    function fetch()
-    {
+    function fetch_all(){
         $crudModel = new Usuario();
 
         $data_table = new TablesIgniter();
@@ -28,8 +25,7 @@ class UsuarioController extends BaseController
         return $data_table->getDatatable();
     }
 
-    function action()
-    {
+    function action(){
         if ($this->request->getVar('action')) {
             helper(['form', 'url']);
             $name_error = '';
@@ -72,7 +68,7 @@ class UsuarioController extends BaseController
             } else {
                 //NO HAY ERROR
                 $success = 'yes';
-                if ($this->request->getVar('action') == 'Add') {
+                if ($this->request->getVar('action') == 'Add') {//Agregar
                     $crudModel = new Usuario();
                     // ========== INSERT INTO NOMBRE DE TABLA========== 
                     $crudModel->save([
@@ -80,10 +76,10 @@ class UsuarioController extends BaseController
                         'email'       =>  $this->request->getVar('email'),
                         'password'    =>  $this->request->getVar('password')
                     ]);
-                    // $message = '<div class="alert alert-success">Usuario agregado</div>';
+                    $message = 'Guardado Correctamente!';
                 }
 
-                if ($this->request->getVar('action') == 'Edit') {
+                if ($this->request->getVar('action') == 'Edit') {//Editar
                     $crudModel = new Usuario();
 
                     $id = $this->request->getVar('hidden_id');
@@ -94,7 +90,7 @@ class UsuarioController extends BaseController
                     ];
                     // ========= UPDATE USUARIO ========= 
                     $crudModel->update($id, $data);
-                    // $message = '<div class="alert alert-success">Usuario Actualizado</div>';
+                    $message = 'Actualizado Correctamente!';
                 }
             }
 
@@ -113,23 +109,21 @@ class UsuarioController extends BaseController
         }
     }
 
-    function fetch_single_data()
-    {
+    function fetch_single_data(){
         if ($this->request->getVar('id')) {
             $crudModel = new Usuario();
-            $user_data = $crudModel->where('id', $this->request->getVar('id'))->first();
-            echo json_encode($user_data);
+            $data = $crudModel->where('id', $this->request->getVar('id'))->first();
+            echo json_encode($data);
         }
     }
 
-    function delete()
-    {
+    function delete(){
         if ($this->request->getVar('id')) {
             $id = $this->request->getVar('id');
             $crudModel = new Usuario();
             // DELETE -> METODOS DE CODEIGNITER TIPO ORM 
             $crudModel->where('id', $id)->delete($id);
-            echo '<div class="alert alert-success">Usuario Eliminado</div>';
+            echo 1;
         }
     }
 }

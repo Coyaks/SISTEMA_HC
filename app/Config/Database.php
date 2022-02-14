@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'db_ci4',
+        'database' => 'db_sis_comercial_pro',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
