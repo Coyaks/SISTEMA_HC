@@ -18,24 +18,41 @@ class LoginController extends BaseController{
         $password=$this->request->getPost('password');
         //verificar si credenciales existen en la DB
         $login=new Login(); 
-        $datosUsuario=$login->obtenerUsuario(['email'=>$email]);
+        //$resultadoUsuario ->te devuelve un array (registro) con todos los DATOS del usuario
+        $resultadoUsuario=$login->buscarUsuarioPorEmail($email);
+        
+        //$passwordDB=$resultadoUsuario[0]['password'];
         // si existe el email en la DB
-        // if(count($datosUsuario)>0 && password_verify($password, $datosUsuario[0]['password'])){
-        if(count($datosUsuario)>0){
-            //instanciar una sesion
-            $data=[
-                'usuario'=>$datosUsuario[0]['email'],
-                'password'=>$datosUsuario[0]['password']
-            ];
-            $session = session();
-            $session->set($data);
-            //redireccionar
-            //return redirect()->to(base_url('/dashboard'))->with('mensaje', '1');
-            echo 1;
+        $msg_salida='';
+        $success='';
+        
+        if(count($resultadoUsuario)>0){
+            $passwordDB=$resultadoUsuario[0]['password'];
+            if($password==$passwordDB){
+                $msg_salida='ok';
+            }else{
+                $msg_salida='Password incorrecto!';
+            }
         }else{
-            //return redirect()->to(base_url('/'))->with('mensaje','0');
-            echo 0;
+            $msg_salida='Email no existe!';
         }
+        echo $msg_salida;
+        // if(count($datosUsuario)>0 && password_verify($password, $datosUsuario[0]['password'])){
+        // if(count($datosUsuario)>0){
+        //     //instanciar una sesion
+        //     $data=[
+        //         'usuario'=>$datosUsuario[0]['email'],
+        //         'password'=>$datosUsuario[0]['password']
+        //     ];
+        //     $session = session(); 
+        //     $session->set($data);
+        //     //redireccionar
+        //     //return redirect()->to(base_url('/dashboard'))->with('mensaje', '1');
+        //     echo 1;
+        // }else{
+        //     //return redirect()->to(base_url('/'))->with('mensaje','0');
+        //     echo 0;
+        // }
         // $datos=$login->obtenerUsuario2();
         // $data=[
         //     'datos'=>$datos

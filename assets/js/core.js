@@ -20,7 +20,6 @@ class Alert{
     static success2(){
         Swal.fire({
             icon: 'success',
-            // title: 'Oops...',
             text: 'Guardado Correctamente!',
         })
     }

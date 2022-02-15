@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,26 +11,27 @@
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 
     <!-- MATERIAL ICONS FULL -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet" />
 
     <!-- B5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <!-- SWEETALERT2 JS -->
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <!-- SWEET ALERT2 CSS -->
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
     <!-- CSS CUSTOM -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style-login.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style-login.css') ?>">
 
 </head>
 
 <body>
     <div class="contenedor">
         <div class="box-login shadow-lg border p-5 rounded">
-           <form id="formLogin">
+            <form id="formLogin">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="<?php echo base_url('assets/img/skoy_color.png')?>" alt="Logo" id="logoSkoy">
+                        <img src="<?php echo base_url('assets/img/skoy_color.png') ?>" alt="Logo" id="logoSkoy">
                     </div>
                 </div>
                 <div class="row">
@@ -48,14 +50,14 @@
                                 <span class="mdc-notched-outline__trailing"></span>
                             </span>
                             <!-- Email -->
-                            <input type="text" class="mdc-text-field__input" id="email" name="email"  autofocus autocomplete="off">
+                            <input type="text" class="mdc-text-field__input" id="email" name="email" autofocus autocomplete="off">
                             <span class="material-icons-outlined mdc-text-field__icon mdc-text-field__icon--trailing">
                                 face
                             </span>
                         </label>
                     </div>
                 </div>
-    
+
                 <!-- row 2 -->
                 <div class="row mt-3">
                     <div class="col-lg-12">
@@ -75,15 +77,15 @@
                                     visibility_off
                                 </span>
                             </span>
-    
+
                         </label>
                     </div>
-    
+
                     <div class="col-lg-12">
                         <p class="text-end mt-3 link-custom"><a href="#" class="text-primario">¿Olvidaste tu contraseña?</a></p>
                     </div>
                 </div>
-    
+
                 <!-- row 2 -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -92,22 +94,21 @@
                         </p>
                     </div>
                 </div>
-           </form>
+            </form>
         </div>
     </div>
 
     <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
     <!-- Material Design Web JS -->
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <!-- Instantiate single textfield component rendered in the document -->
-    <script src="<?php echo base_url('assets/js/app_material.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/app_material.js') ?>"></script>
 
     <script>
         //Logica para show y hiden del icon 'ojo' input password
-        $(document).ready(function () {
-            $('#icon-view-pass2').click(function (e) {
+        $(document).ready(function() {
+            $('#icon-view-pass2').click(function(e) {
                 let input_type = $('.toggle-password').attr('type');
                 if (input_type == 'password') {
                     $('.toggle-password').attr('type', 'text');
@@ -120,6 +121,7 @@
         });
     </script>
 
+    <script src="assets/js/core.js"></script>
     <script src="assets/js/login.js"></script>
 </body>
 

@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $('#formLogin').submit(function (e) { 
         e.preventDefault();
         var dataForm=$(this).serialize();
@@ -10,15 +9,15 @@ $(document).ready(function () {
             data: dataForm,
             //dataType: "JSON",
             success: function (r) {
-                if(r==1){
+                //console.log(r)
+                if(r=='ok'){
                     window.location.href='dashboard'
                 }else{
-                    console.log("Datos incorrectos")
+                    //console.log(r)
+                    Alert.error(r)
                 }
                 
             }
         });    
     });
-
-    
 });

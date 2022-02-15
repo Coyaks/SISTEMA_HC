@@ -23,6 +23,8 @@
     <!-- MDB -->
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet" /> -->
 
+    <!-- SWEETALERT2 JS -->
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <!-- SWEET ALERT2 CSS -->
     <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
     <!-- iCheck -->
@@ -341,8 +343,7 @@
     <!-- CORE FUNCIONES JAVASCRIPT REUTILIZABLE -->
     <script src="assets/js/core.js"></script>
 
-    <!-- SWEETALERT2 JS -->
-    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    
 
     <!-- === Material Design Web JS === -->
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
