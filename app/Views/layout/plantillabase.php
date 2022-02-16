@@ -129,7 +129,7 @@
                             Editar Perfil
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
+                        <a href="<?php echo base_url('/logout')?>" class="dropdown-item">
                             Cerrar Sesión
                         </a>
                     </div>
@@ -154,7 +154,10 @@
                         <img src="<?= base_url('/assets/adminlte') ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <!-- utilizar variable session -->
+                        <a href="#" class="d-block"><?= session('nombreApellidos')?></a>
+                        <!-- if moderno -->
+                        
                     </div>
                 </div>
 

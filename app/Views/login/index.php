@@ -50,7 +50,7 @@
                                 <span class="mdc-notched-outline__trailing"></span>
                             </span>
                             <!-- Email -->
-                            <input type="text" class="mdc-text-field__input" id="email" name="email" autofocus autocomplete="off">
+                            <input type="text" class="mdc-text-field__input" id="email" name="email" autofocus autocomplete="off" value="admin@gmail.com">
                             <span class="material-icons-outlined mdc-text-field__icon mdc-text-field__icon--trailing">
                                 face
                             </span>

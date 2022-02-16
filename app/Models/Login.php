@@ -9,13 +9,11 @@ class Login extends Model{
     protected $allowedFields=['email','password']; 
     // Uncomment below if you want add primary key
     // protected $primaryKey = 'id';
-    public function obtenerUsuario($data){ 
-        //QueryBuilder
-        $usuario=$this->db->table('usuarios');
-        $usuario->where($data);
-        return $usuario->get()->getResultArray();
-    }
     public function buscarUsuarioPorEmail($email){
+        //QueryBuilder
+        // $builder=$this->db->table('usuarios');
+        // $builder->where($data);
+
         $builder=$this->db->table($this->table)->where('email',$email);
         return $builder->get()->getResultArray();
     }

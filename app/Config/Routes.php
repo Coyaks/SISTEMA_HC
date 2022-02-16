@@ -36,6 +36,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'LoginController::index');
 $routes->get('/usuario', 'UsuarioController::index');
 $routes->get('/dashboard', 'DashboardController::index');
+$routes->get('/logout', 'LoginController::logout');
 // $routes->get('/hola', 'UsuarioController::index');
 
 /*
