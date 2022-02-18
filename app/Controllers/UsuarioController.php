@@ -30,7 +30,7 @@ class UsuarioController extends BaseController{
             helper(['form', 'url']);
             $name_error = '';
             $email_error = '';
-            $gender_error = '';
+            $password_error = '';
             $error = 'no';
             $success = 'no';
             $message = '';
@@ -63,7 +63,7 @@ class UsuarioController extends BaseController{
                 }
 
                 if ($validation->getError('password')) {
-                    $gender_error = $validation->getError('password');
+                    $password_error = $validation->getError('password');
                 }
             } else {
                 //NO HAY ERROR
@@ -98,7 +98,7 @@ class UsuarioController extends BaseController{
             $data = array(
                 'name_error'    =>    $name_error,
                 'email_error'    =>    $email_error,
-                'gender_error'    =>    $gender_error,
+                'password_error'    =>    $password_error,
 
                 'error'            =>    $error,
                 'success'        =>    $success,

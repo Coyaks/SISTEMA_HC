@@ -16,6 +16,19 @@
     box-sizing: border-box;
 }
 
+/* //input style */
+.modal .form-control {
+    border-color: #e3e3e3;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 15px;
+    background-color: #fff;
+    color: #333;
+}
+input, select, .input-group-prepend {
+    border: 1px solid rgba(0,0,0,.3) !important;
+}
+
 body {
     font-family: 'Roboto', sans-serif !important;
     font-size: var(--normal-font-size);
@@ -54,10 +67,3 @@ table thead {
 .mdc-text-field2 {
     height: 45px;
 }
-
-/* .mdc-notched-outline2{
-    height:35px;
-}
-.mdc-text-field__input2{
-    height:45px;
-} */

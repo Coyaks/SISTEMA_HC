@@ -47,7 +47,7 @@ Usuario
 
 <!-- Modal Usuario-->
 <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <!-- inicio de form -->
         <form id="formUsuario">
             <div class="modal-content">
@@ -58,37 +58,61 @@ Usuario
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <div class="form__div">
-                                    <input type="text" class="form__input" name="name" id="name" placeholder=" ">
-                                    <label for="" class="form__label">Nombre</label>
-                                </div>
+                                <label for="">Nombre</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="">
                                 <!-- validacion elegante -->
                                 <span id="name_error" class="text-danger"></span>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <div class="form__div">
-                                    <input type="text" class="form__input" name="email" id="email" placeholder=" ">
-                                    <label for="" class="form__label">Email</label>
-                                </div>
-                                <span id="email_error" class="text-danger"></span>
+                                <label for="">Apellidos</label>
+                                <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="">
+                                <span id="apellidos_error" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form__div">
-                                <input type="text" class="form__input" name="password" id="password" placeholder=" ">
-                                <label for="" class="form__label">Password</label>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+
+                                <label for="">Email</label>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="">
+                                <span id="email_error" class="text-danger"></span>
                             </div>
-                            <span id="gender_error" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="">Password</label>
+                                <input type="text" class="form-control" name="password" id="password" placeholder="">
+                                <span id="password_error" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="" class="">Rol</label>
+                                <select name="rol" id="rol" class="form-control">
+                                    <option value="">-- Seleccione --</option>
+                                </select>
+                            </div>
+                            <span id="rol_error" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="">Estado</label>
+                                <select name="rol" id="rol" class="form-control">
+                                    <option value="">-- Seleccione --</option>
+                                </select>
+                            </div>
+                            <span id="rol_error" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -98,7 +122,7 @@ Usuario
                     <input type="hidden" name="action" id="action" value="Add" />
 
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-                    
+
                     <!-- OJO: button tambien tine value="Add" or "Edit" -->
                     <button type="submit" name="submit" id="btnGuardar" class="btn btn-success"><i class="fal fa-save"></i> Guardar</button>
                 </div>

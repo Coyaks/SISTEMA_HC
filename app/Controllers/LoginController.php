@@ -8,28 +8,6 @@ class LoginController extends BaseController
 {
     public function index()
     {
-        //$this->load->library('session');
-        //$mensaje=session('mensaje');
-        // if($this->session('idUsuario')){
-        //     return view('login/index');
-        // }else{
-        //     return redirect()->to(base_url('/'));
-        // }
-        // if(isset($_SESSION['idUsuario'])==false){
-        //     //usuario no es admin
-        //     return redirect()->to(base_url('/'));
-        // }else{
-        //     return view('login/index');
-        // }
-
-        // if ($this->session->userdata('idUsuario')) {
-        //     // do something when exist
-        //     return view('login/index');
-        // } else {
-        //     // do something when doesn't exist
-        //     return redirect()->to(base_url('/'));
-        // }
-
         return view('login/index');
     }
     public function login()
@@ -58,6 +36,7 @@ class LoginController extends BaseController
                     'nombreApellidos' => $resultadoUsuario[0]['nombre'] . ' ' . $resultadoUsuario[0]['apellidos'],
                     'email' => $resultadoUsuario[0]['email'],
                     'idRol' => $resultadoUsuario[0]['idRol'],
+                    'logeado'  => true
                 ];
                 // $session = session();
                 // $session->set($dataSession);
