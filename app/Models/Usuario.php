@@ -8,7 +8,7 @@ class Usuario extends Model{
     protected $table='usuarios';
     // protected $primaryKey='id';
 	// "$allowedFields" -> que campos quiero que se inserten y actualicen
-    protected $allowedFields=['nombre','email','password'];
+    protected $allowedFields=['nombre','apellidos','email','password','idRol','estado'];
 
     public function tablaUsuario(){
         $builder=$this->db->table('usuarios');

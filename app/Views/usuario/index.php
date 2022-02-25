@@ -16,8 +16,12 @@ Usuario
 
 
 <?= $this->section('contenido') ?>
+<?php
+    //echo base_url('/Helpers/Helpers.php');
+    // include_once '/Helpers/Helpers.php';
+    // include_once base_url('/Helpers/Helpers.php');
+?>
 <div class="container-fluid">
-    <span id="message">hola</span>
     <fieldset class="border-fielset p-2">
         <legend class="w-auto text-primary">
             <h3 class="m-0">Usuarios</h3>
@@ -29,11 +33,13 @@ Usuario
         </div>
 
         <div class="table-responsive">
-            <table id="tablaUsuario" class="table table-striped" style="width:100%">
+            <?php ?>
+            <table id="tablaUsuario" class="table table-striped table-hover" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Apellidos</th>
                         <th>Email</th>
                         <th>Password</th>
                         <th>Acciones</th>
@@ -60,10 +66,10 @@ Usuario
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="">Nombre</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="">
+                                <label for="">Nombre <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="">
                                 <!-- validacion elegante -->
-                                <span id="name_error" class="text-danger"></span>
+                                <span id="nombre_error" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -79,15 +85,15 @@ Usuario
                         <div class="col-lg-6">
                             <div class="form-group">
 
-                                <label for="">Email</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="">
+                                <label for="">Email <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="email" id="email" value="@gmail.com" placeholder="">
                                 <span id="email_error" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label for="">Password</label>
+                                <label for="">Password <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="password" id="password" placeholder="">
                                 <span id="password_error" class="text-danger"></span>
                             </div>
@@ -97,22 +103,25 @@ Usuario
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="" class="">Rol</label>
+                                <label for="" class="">Rol <span class="text-danger">*</span></label>
                                 <select name="rol" id="rol" class="form-control">
                                     <option value="">-- Seleccione --</option>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Vendedor</option>
                                 </select>
+                                <span id="rol_error" class="text-danger"></span>
                             </div>
-                            <span id="rol_error" class="text-danger"></span>
                         </div>
 
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="">Estado</label>
-                                <select name="rol" id="rol" class="form-control">
-                                    <option value="">-- Seleccione --</option>
+                                <select name="estado" id="estado" class="form-control">
+                                    <option value="1" selected>Activo</option>
+                                    <option value="0">Inactivo</option>
                                 </select>
+                                <span id="estado_error" class="text-danger"></span>
                             </div>
-                            <span id="rol_error" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -124,7 +133,7 @@ Usuario
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
 
                     <!-- OJO: button tambien tine value="Add" or "Edit" -->
-                    <button type="submit" name="submit" id="btnGuardar" class="btn btn-success"><i class="fal fa-save"></i> Guardar</button>
+                    <button type="submit" name="submit" id="btnGuardar" class="btn btn-success"><i class="fa fa-fw fa-check-circle" aria-hidden="true"></i> Guardar</button>
                 </div>
             </div>
         </form>

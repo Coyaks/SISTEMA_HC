@@ -16,6 +16,10 @@
     box-sizing: border-box;
 }
 
+.menu-item-active{
+    color: #ffff00 !important;
+}
+
 /* //input style */
 .modal .form-control {
     border-color: #e3e3e3;
@@ -54,6 +58,7 @@ table thead {
     position: relative;
 }
 
+/* CUSTOM ICON CLOSE MODAL */
 .close {
     color: #037aca !important;
     cursor: pointer;
@@ -63,7 +68,3 @@ table thead {
     right: -14px;
 }
 
-/* input material design */
-.mdc-text-field2 {
-    height: 45px;
-}

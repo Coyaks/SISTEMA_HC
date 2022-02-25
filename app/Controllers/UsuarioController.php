@@ -18,19 +18,21 @@ class UsuarioController extends BaseController{
         $data_table = new TablesIgniter();
 
         $data_table->setTable($crudModel->tablaUsuario())
-            ->setDefaultOrder("id", "DESC")
-            ->setSearch(["nombre", "email", "password"])
-            ->setOrder(["id", "nombre", "email", "password"])
-            ->setOutput(["id", "nombre", "email", "password", $crudModel->acciones_usuario()]);
+            ->setDefaultOrder("id", "DESC") //Order by DESC
+            ->setSearch(["nombre","apellidos", "email", "password"])
+            ->setOrder(["id", "nombre","apellidos","email", "password"])
+            ->setOutput(["id", "nombre","apellidos", "email", "password", $crudModel->acciones_usuario()]);
         return $data_table->getDatatable();
     }
 
     function action(){
         if ($this->request->getVar('action')) {
             helper(['form', 'url']);
-            $name_error = '';
+            $nombre_error = '';
+            $apellidos_error = '';
             $email_error = '';
             $password_error = '';
+            $rol_error = '';
             $error = 'no';
             $success = 'no';
             $message = '';
@@ -38,24 +40,25 @@ class UsuarioController extends BaseController{
             //OJO: $error_bool return "TRUE" si todos los campos son CORRECTOS !!
             $error_bool = $this->validate(
                 [
-                    'name'    =>    'required|min_length[3]',
+                    'nombre'    =>    'required',
                     'email'    =>    'required|valid_email',
-                    'password' =>    'required'
+                    'password' =>    'required',
+                    'rol' =>    'required',
                 ],
-                [   // Errors
-                    'name' => [
+                [   // Errors Custom
+                    'nombre' => [
                         'required' => 'El nombre es obligatorio',
                         //'min_length'=> 'Muy corto'
                     ]
                 ]
             );
-            // !$error_bool
+            // !$error_bool //hay un error en la validacion
             if ($error_bool == false) {
                 $error = 'yes';
                 $validation = \Config\Services::validation();
                 
-                if ($validation->getError('name')) {
-                    $name_error = $validation->getError('name');
+                if ($validation->getError('nombre')) {
+                    $nombre_error = $validation->getError('nombre');
                 }
 
                 if ($validation->getError('email')) {
@@ -65,6 +68,9 @@ class UsuarioController extends BaseController{
                 if ($validation->getError('password')) {
                     $password_error = $validation->getError('password');
                 }
+                if ($validation->getError('rol')) {
+                    $rol_error = $validation->getError('rol');
+                }
             } else {
                 //NO HAY ERROR
                 $success = 'yes';
@@ -72,9 +78,12 @@ class UsuarioController extends BaseController{
                     $crudModel = new Usuario();
                     // ========== INSERT INTO NOMBRE DE TABLA========== 
                     $crudModel->save([
-                        'nombre'      =>  $this->request->getVar('name'),
+                        'nombre'      =>  $this->request->getVar('nombre'),
+                        'apellidos'      =>  $this->request->getVar('apellidos'),
                         'email'       =>  $this->request->getVar('email'),
-                        'password'    =>  $this->request->getVar('password')
+                        'password'    =>  $this->request->getVar('password'),
+                        'idRol'    =>  $this->request->getVar('rol'),
+                        'estado'    =>  $this->request->getVar('estado'),
                     ]);
                     $message = 'Guardado Correctamente!';
                 }
@@ -84,9 +93,12 @@ class UsuarioController extends BaseController{
 
                     $id = $this->request->getVar('hidden_id');
                     $data = [
-                        'nombre'      =>  $this->request->getVar('name'),
+                        'nombre'      =>  $this->request->getVar('nombre'),
+                        'apellidos'      =>  $this->request->getVar('apellidos'),
                         'email'     =>  $this->request->getVar('email'),
-                        'password'    =>  $this->request->getVar('password')
+                        'password'    =>  $this->request->getVar('password'),
+                        'idRol'    =>  $this->request->getVar('rol'),
+                        'estado'    =>  $this->request->getVar('estado'),
                     ];
                     // ========= UPDATE USUARIO ========= 
                     $crudModel->update($id, $data);
@@ -96,9 +108,11 @@ class UsuarioController extends BaseController{
 
             //data salida -> Array
             $data = array(
-                'name_error'    =>    $name_error,
+                'nombre_error'    =>    $nombre_error,
+                'apellidos_error'    =>    $apellidos_error,
                 'email_error'    =>    $email_error,
                 'password_error'    =>    $password_error,
+                'rol_error'    =>    $rol_error,
 
                 'error'            =>    $error,
                 'success'        =>    $success,

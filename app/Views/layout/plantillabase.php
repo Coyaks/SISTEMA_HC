@@ -8,8 +8,10 @@
 
     <!-- Google Font: Source Sans Pro -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
-    <!-- Font Awesome PRO-->
+    <!-- Font Awesome 5 PRO-->
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css">
+    <!-- Font Awesome free CDN -->
+    <!-- <script src="https://kit.fontawesome.com/3e07f7d7b0.js" crossorigin="anonymous"></script> -->
 
     <!-- MATERIAL DESIGN CSS -->
     <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
@@ -126,11 +128,11 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
-                            Editar Perfil
+                        <i class="fas fa-user-circle"></i> Editar Perfil
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="<?php echo base_url('/logout')?>" class="dropdown-item">
-                            Cerrar Sesión
+                        <a href="<?php echo base_url('/logout') ?>" class="dropdown-item">
+                        <i class="fas fa-sign-out "></i> Cerrar Sesión
                         </a>
                     </div>
                 </li>
@@ -155,9 +157,9 @@
                     </div>
                     <div class="info">
                         <!-- utilizar variable session -->
-                        <a href="#" class="d-block"><?= session('nombreApellidos')?></a>
+                        <a href="#" class="d-block"><?= session('nombreApellidos') ?></a>
                         <!-- if moderno -->
-                        
+
                     </div>
                 </div>
 
@@ -177,35 +179,6 @@
                 <nav class="mt-2">
                     <!-- lista general -->
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./index.html" class="nav-link active">
-                                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                                        <p>Dashboard v1</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> -->
                         <!-- MODULO DASHBOARD -->
                         <li class="nav-item active">
                             <a href="<?= base_url('dashboard') ?>" class="nav-link">
@@ -216,20 +189,34 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url('usuario') ?>" class="nav-link">
-                                <!-- <i class="nav-icon fas fa-th"></i> -->
-                                <i class="nav-icon fal fa-users"></i>
+                        <!-- MODULO DE USUARIOS -->
+                        <li class="nav-item menu-<?= (current_url()==base_url('usuario') || current_url()==base_url('rol'))?'open':'close' ?>">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
                                 <p>
                                     Usuarios
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right">2</span>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ml-4">
+                                    <a href="<?= base_url('usuario') ?>" class="nav-link <?= (current_url()==base_url('usuario'))?'menu-item-active':'' ?>">
+                                        <p>Usuarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="<?= base_url('roles') ?>" class="nav-link">
+                                        <p>Roles</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+
                         <!-- PRODUCTOS -->
                         <li class="nav-item">
                             <a href="<?= base_url('usuario') ?>" class="nav-link">
-                                <!-- <i class="nav-icon fas fa-th"></i> -->
-                                <i class="nav-icon fal fa-users"></i>
+                                <i class="nav-icon fa fa-shopping-bag"></i>
                                 <p>
                                     Productos
                                 </p>
@@ -284,7 +271,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt nav-icon"></i>
+                                <i class="nav-icon fas fa-sign-out "></i>
                                 <p>
                                     Cerrar sesión
                                 </p>
@@ -346,7 +333,7 @@
     <!-- CORE FUNCIONES JAVASCRIPT REUTILIZABLE -->
     <script src="assets/js/core.js"></script>
 
-    
+
 
     <!-- === Material Design Web JS === -->
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
@@ -356,6 +343,10 @@
     <!-- DATATABLES JQUERY + B4 JS -->
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- DATATABLES FILTRO POR COLUMNA -->
+    <!-- <script src="assets/libs/datatables/dataTables.fixedHeader.min.js"></script> -->
+    <script src="https://cdn.datatables.net/fixedheader/3.2.1/js/dataTables.fixedHeader.min.js"></script>
 
     <!-- 6 CDN BUTTONS DATATABLES -->
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>

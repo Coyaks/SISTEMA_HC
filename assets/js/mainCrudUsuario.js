@@ -2,15 +2,15 @@ $(document).ready(function () {
 
     $('#tablaUsuario').DataTable({
         language: {
-            "url": "assets/lib/spanish_datatables.json"
+            "url": "assets/libs/spanish_datatables.json"
         },
         "order": [],
         "serverSide": true,
         "ajax": {
             url: "UsuarioController/fetch_all",
-            type: "POST",
+            type: "POST"
         },
-        // custom cantidad filas
+        // custom cantidad filas (yo lo puse)
         "lengthMenu": [
             [5, 10, 50, -1],
             [5, 10, 50, "All"]
@@ -57,15 +57,22 @@ $(document).ready(function () {
         $('.modal-title').text('Agregar Usuario');
         $('.modal-header').css('background-color', '#343a40');
         $('.modal-header').css('color', '#fff');
-        // validacion errors
-        $('#name_error').text('');
-        $('#email_error').text('');
-        $('#gender_error').text('');
+
+        reset_campos_errors()
 
         $('#action').val('Add');
         $('#btnGuardar').val('Add');
         $('#modalUsuario').modal('show');
     });
+
+    function reset_campos_errors() {
+        // validacion errors
+        $('#nombre_error').text('');
+        $('#apellidos_error').text('');
+        $('#email_error').text('');
+        $('#password_error').text('');
+        $('#rol_error').text('');
+    }
 
     // INSERT
     $('#formUsuario').submit(function (e) {
@@ -81,15 +88,17 @@ $(document).ready(function () {
             // },
             success: function (data) {
                 if (data.error == 'yes') {
-                    $('#name_error').text(data.name_error);
+                    $('#nombre_error').text(data.nombre_error);
+                    $('#apellidos_error').text(data.apellidos_error);
                     $('#email_error').text(data.email_error);
-                    $('#gender_error').text(data.gender_error);
+                    $('#password_error').text(data.password_error);
+                    $('#rol_error').text(data.rol_error);
                 } else {
                     $('#modalUsuario').modal('hide');
                     $('#tablaUsuario').DataTable().ajax.reload();
 
                     // Toast custom
-                    Alert.success(data.message)    
+                    Alert.success(data.message)
                 }
             }
         })
@@ -106,17 +115,20 @@ $(document).ready(function () {
             },
             dataType: 'JSON',
             success: function (data) {
-                $('#name').val(data.nombre);
+                // 'data.idRol'-> atributo como viene de la DB
+                $('#nombre').val(data.nombre);
+                $('#apellidos').val(data.apellidos);
                 $('#email').val(data.email);
                 $('#password').val(data.password);
+                //set value en "select"
+                $('#rol').val(data.idRol);
+                $('#estado').val(data.estado);
 
                 $('.modal-title').text('Editar Usuario');
                 $('.modal-header').css('background-color', '#3164ff');
                 $('.modal-header').css('color', '#fff');
 
-                $('#name_error').text('');
-                $('#email_error').text('');
-                $('#gender_error').text('');
+                reset_campos_errors();
                 $('#action').val('Edit');
                 $('#btnGuardar').val('Edit');
                 // abrir modal con datos cargados para editar
@@ -129,7 +141,7 @@ $(document).ready(function () {
     //DELETE
     $(document).on('click', '.delete', function () {
         var id = $(this).data('id');
-        
+
         Swal.fire({
             //title: 'Are you sure?',
             text: "¿Está seguro de eliminar?",
