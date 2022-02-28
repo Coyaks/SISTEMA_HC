@@ -1,9 +1,8 @@
 <!-- EXTENDER LA PLANTILLA PRINCIPAL -->
 <?= $this->extend('layout/plantillabase') ?>
-
 <!-- SECCIONES -->
 <?= $this->section('title') ?>
-Usuario
+Usuarios
 <?= $this->endSection() ?>
 
 <?= $this->section('css') ?>
@@ -16,15 +15,10 @@ Usuario
 
 
 <?= $this->section('contenido') ?>
-<?php
-    //echo base_url('/Helpers/Helpers.php');
-    // include_once '/Helpers/Helpers.php';
-    // include_once base_url('/Helpers/Helpers.php');
-?>
 <div class="container-fluid">
     <fieldset class="border-fielset p-2">
         <legend class="w-auto text-primary">
-            <h3 class="m-0">Usuarios</h3>
+            <h6 class="m-0 text-uppercase style-title">Usuarios</h6>
         </legend>
         <div class="row mb-3">
             <div class="col-lg-12">
@@ -34,7 +28,7 @@ Usuario
 
         <div class="table-responsive">
             <?php ?>
-            <table id="tablaUsuario" class="table table-striped table-hover" style="width:100%">
+            <table id="tablaUsuario" class="table table-bordered table-hover" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -58,7 +52,7 @@ Usuario
         <form id="formUsuario">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <!-- icon close custom -->
                     <img src="<?php echo base_url('assets/img/close.png') ?>" alt="close" class="close" data-dismiss="modal" aria-label="Close">
                 </div>
@@ -84,7 +78,6 @@ Usuario
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-
                                 <label for="">Email <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="email" id="email" value="@gmail.com" placeholder="">
                                 <span id="email_error" class="text-danger"></span>
@@ -106,8 +99,13 @@ Usuario
                                 <label for="" class="">Rol <span class="text-danger">*</span></label>
                                 <select name="rol" id="rol" class="form-control">
                                     <option value="">-- Seleccione --</option>
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Vendedor</option>
+                                    <?php
+                                        foreach ($roles as $rol) {
+                                            ?>
+                                                <option value="<?= $rol->id?>"><?= $rol->nombre?></option>
+                                            <?php
+                                        }
+                                    ?>
                                 </select>
                                 <span id="rol_error" class="text-danger"></span>
                             </div>

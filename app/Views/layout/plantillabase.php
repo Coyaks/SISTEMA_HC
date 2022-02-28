@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema PRO</title>
+    <!-- <title>Sistema PRO</title> -->
+    <title><?= $this->renderSection('title') ?></title>
 
     <!-- Google Font: Source Sans Pro -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
@@ -128,11 +129,11 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
-                        <i class="fas fa-user-circle"></i> Editar Perfil
+                            <i class="fas fa-user-circle"></i> Editar Perfil
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="<?php echo base_url('/logout') ?>" class="dropdown-item">
-                        <i class="fas fa-sign-out "></i> Cerrar Sesión
+                            <i class="fas fa-sign-out "></i> Cerrar Sesión
                         </a>
                     </div>
                 </li>
@@ -190,7 +191,7 @@
                         </li>
 
                         <!-- MODULO DE USUARIOS -->
-                        <li class="nav-item menu-<?= (current_url()==base_url('usuario') || current_url()==base_url('rol'))?'open':'close' ?>">
+                        <li class="nav-item menu-<?= (current_url() == base_url('usuario') || current_url() == base_url('rol')) ? 'open' : 'close' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-friends"></i>
                                 <p>
@@ -201,26 +202,140 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item ml-4">
-                                    <a href="<?= base_url('usuario') ?>" class="nav-link <?= (current_url()==base_url('usuario'))?'menu-item-active':'' ?>">
+                                    <a href="<?= base_url('usuario') ?>" class="nav-link <?= (current_url() == base_url('usuario')) ? 'menu-item-active' : '' ?>">
                                         <p>Usuarios</p>
                                     </a>
                                 </li>
                                 <li class="nav-item ml-4">
-                                    <a href="<?= base_url('roles') ?>" class="nav-link">
+                                    <a href="<?= base_url('rol') ?>" class="nav-link <?= (current_url() == base_url('rol')) ? 'menu-item-active' : '' ?>">
                                         <p>Roles</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
-                        <!-- PRODUCTOS -->
+                        <!-- COLABORADORES-->
                         <li class="nav-item">
-                            <a href="<?= base_url('usuario') ?>" class="nav-link">
-                                <i class="nav-icon fa fa-shopping-bag"></i>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
                                 <p>
-                                    Productos
+                                    Puestos
+                                    <i class="fas fa-angle-left right"></i>
+                                   
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav.html" class="nav-link">
+                                        <p>TÉCNICO ADMINISTRATIVO MESA DE PARTES</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>TÉCNICO ADMINISTRATIVO FEDATEO</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>TECNICO ADMINISTRATIVO ADMISION</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>PACIENTE</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>LICENCIADA DE ENFERMERIA</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>MEDICO</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p></p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a href="<?= base_url('dashboard') ?>" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Especialidad Médica
+                                </p>
+                            </a>
+                        </li>
+
+
+
+
+                        <!-- PROCESOS -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    Procesos/Actividades
+                                    <i class="fas fa-angle-left right"></i>
+                                
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav.html" class="nav-link">
+                                        <p>Creación de HC</p>
+                                    </a>
+                                </li>
+                        
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>EVOLUCIÓN MEDICA</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>ANOTACIONES DE ENFERMERIA</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- CITAS -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    citas
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>Creación de Citas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>CITAS PENDIENTES</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>HISTORICO DE CITAS</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                        <p>EVOLUCIÓN MEDICA</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
 
@@ -230,7 +345,7 @@
                                 <p>
                                     Reportes
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+                                  
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
@@ -253,7 +368,7 @@
                                 <p>
                                     Administración
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+                                  
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">

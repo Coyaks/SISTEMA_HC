@@ -18,8 +18,8 @@ class LoginController extends BaseController
         //getPost('') = $_POST['']
         //get('') = $_POST['']
 
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
+        $email = trim($this->request->getPost('email'));
+        $password = trim($this->request->getPost('password'));
         //verificar si credenciales existen en la DB
         $login = new Login();
         //$resultadoUsuario ->te devuelve un array (registro) con todos los DATOS del usuario

@@ -17,4 +17,17 @@
         return humanDatetime($datetimeDB);
     }
 
+
+    function formatterArray($data){ 
+        print "<pre>";
+        print_r($data);
+        print "</pre>";
+    }
+
+    function media($path=""){ 
+        return base_url('assets/'.$path);
+    }
+
+
+
 ?>

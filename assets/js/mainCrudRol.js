@@ -1,13 +1,16 @@
 $(document).ready(function () {
+    // window.addEventListener('load', function(){
+    //     fntPermisos()
+    // },false);
 
-    $('#tablaUsuario').DataTable({
+    $('#tabla').DataTable({
         language: {
             "url": "assets/libs/spanish_datatables.json"
         },
         "order": [],
         "serverSide": true,
         "ajax": {
-            url: "UsuarioController/fetch_all",
+            url: "RolController/fetch_all",
             type: "POST"
         },
         // custom cantidad filas (yo lo puse)
@@ -52,9 +55,9 @@ $(document).ready(function () {
         ]
     });
 
-    $('#btnNuevoUsuario').click(function () {
-        $('#formUsuario').trigger('reset');
-        $('.modal-title').text('Agregar Usuario');
+    $('#btnNuevo').click(function () {
+        $('#form').trigger('reset');
+        $('.modal-title').text('Agregar Rol');
         $('.modal-header').css('background-color', '#343a40');
         $('.modal-header').css('color', '#fff');
 
@@ -62,52 +65,34 @@ $(document).ready(function () {
 
         $('#action').val('Add');
         $('#btnGuardar').val('Add');
-        $('#modalUsuario').modal('show');
+        $('#modal').modal('show');
     });
 
     function reset_campos_errors() {
+        // validacion errors
         $('#nombre_error').text('');
-        $('#apellidos_error').text('');
-        $('#email_error').text('');
-        $('#password_error').text('');
-        $('#rol_error').text('');
-    }
-
-    // PETICION MEDIANTE AJAX 
-    function fetchRoles(){
-        $.ajax({
-            type: "POST",
-            url: "UsuarioController/fetchRoles2",
-            // data: {},
-            dataType: "JSON",
-            success: function (response) {
-                console.log("JSON RTA:",response)
-            }
-        });
+        $('#descripcion_error').text('');
+        $('#estado_error').text('');
     }
 
     // INSERT
-    $('#formUsuario').submit(function (e) {
+    $('#form').submit(function (e) {
         e.preventDefault();
-        // forma elegante de capturar valores de input: $('#formUsuario').serialize();
+        // forma elegante de capturar valores de input: $('#formRol').serialize();
         $.ajax({
-            url: "UsuarioController/action",
+            url: "RolController/action",
             method: "POST",
             data: $(this).serialize(),
             dataType: "JSON",
 
-            // beforeSend: function () {
-            // },
             success: function (data) {
                 if (data.error == 'yes') {
                     $('#nombre_error').text(data.nombre_error);
-                    $('#apellidos_error').text(data.apellidos_error);
-                    $('#email_error').text(data.email_error);
-                    $('#password_error').text(data.password_error);
-                    $('#rol_error').text(data.rol_error);
+                    $('#descripcion_error').text(data.apellidos_error);
+                    $('#estado_error').text(data.email_error);
                 } else {
-                    $('#modalUsuario').modal('hide');
-                    $('#tablaUsuario').DataTable().ajax.reload();
+                    $('#modal').modal('hide');
+                    $('#tabla').DataTable().ajax.reload();
 
                     // Toast custom
                     Alert.success(data.message)
@@ -120,7 +105,7 @@ $(document).ready(function () {
     $(document).on('click', '.edit', function () {
         var id = $(this).data('id');
         $.ajax({
-            url: "UsuarioController/fetch_single_data",
+            url: "RolController/fetch_single_data",
             method: "POST",
             data: {
                 id: id
@@ -129,14 +114,10 @@ $(document).ready(function () {
             success: function (data) {
                 // 'data.idRol'-> atributo como viene de la DB
                 $('#nombre').val(data.nombre);
-                $('#apellidos').val(data.apellidos);
-                $('#email').val(data.email);
-                $('#password').val(data.password);
-                //set value en "select"
-                $('#rol').val(data.idRol);
+                $('#descripcion').val(data.descripcion);
                 $('#estado').val(data.estado);
 
-                $('.modal-title').text('Editar Usuario');
+                $('.modal-title').text('Editar Rol');
                 $('.modal-header').css('background-color', '#3164ff');
                 $('.modal-header').css('color', '#fff');
 
@@ -144,7 +125,7 @@ $(document).ready(function () {
                 $('#action').val('Edit');
                 $('#btnGuardar').val('Edit');
                 // abrir modal con datos cargados para editar
-                $('#modalUsuario').modal('show');
+                $('#modal').modal('show');
                 $('#hidden_id').val(id);
             }
         })
@@ -153,7 +134,6 @@ $(document).ready(function () {
     //DELETE
     $(document).on('click', '.delete', function () {
         var id = $(this).data('id');
-
         Swal.fire({
             //title: 'Are you sure?',
             text: "¿Está seguro de eliminar?",
@@ -165,14 +145,14 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "UsuarioController/delete",
+                    url: "RolController/delete",
                     method: "POST",
                     data: {
                         id: id
                     },
                     success: function (data) {
                         if (data == 1) {
-                            $('#tablaUsuario').DataTable().ajax.reload();
+                            $('#tabla').DataTable().ajax.reload();
                             Alert.success('Se eliminó correctamente!')
                         }
                     }
@@ -180,4 +160,11 @@ $(document).ready(function () {
             }
         })
     });
+
+    $(document).on('click', '.btnPermisosRol', function (e){
+        e.preventDefault();
+        console.log("Click modal permisos")
+        $('.modalPermisos').modal('show')
+    });
+
 });

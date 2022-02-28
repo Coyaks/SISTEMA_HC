@@ -31,7 +31,7 @@
             <form id="formLogin">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <img src="<?php echo base_url('assets/img/skoy_color.png') ?>" alt="Logo" id="logoSkoy">
+                        <img src="<?php echo base_url('assets/img/logo.jpg') ?>" alt="Logo" id="logoSkoy">
                     </div>
                 </div>
                 <div class="row">

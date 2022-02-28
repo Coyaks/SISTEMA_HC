@@ -2,27 +2,25 @@
 
 namespace App\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Rol;
 
 use monken\TablesIgniter;
 
-class UsuarioController extends BaseController{
+class RolController extends BaseController{
 
     public function index(){
-        $arrayRoles=$this->fetchRoles();
-        return view('Usuario/usuario',$arrayRoles);
+        return view('Rol/rol');
     }
 
     function fetch_all(){
-        $crudModel = new Usuario();
-
+        $crudModel = new Rol();
         $data_table = new TablesIgniter();
 
-        $data_table->setTable($crudModel->tablaDB())
+        $data_table->setTable($crudModel->getTablaDB())
             ->setDefaultOrder("id", "DESC") //Order by DESC
-            ->setSearch(["nombre","apellidos", "email", "password"])
-            ->setOrder(["id", "nombre","apellidos","email", "password"])
-            ->setOutput(["id", "nombre","apellidos", "email", "password", $crudModel->acciones()]);
+            ->setSearch(["id","nombre","descripcion", "estado"])
+            ->setOrder(["id", "nombre","descripcion","estado"])
+            ->setOutput(["id", "nombre","descripcion", $crudModel->estado(), $crudModel->acciones()]);
         return $data_table->getDatatable();
     }
 
@@ -30,10 +28,8 @@ class UsuarioController extends BaseController{
         if ($this->request->getVar('action')) {
             helper(['form', 'url']);
             $nombre_error = '';
-            $apellidos_error = '';
-            $email_error = '';
-            $password_error = '';
-            $rol_error = '';
+            $descripcion_error = '';
+            $estado_error = '';
             $error = 'no';
             $success = 'no';
             $message = '';
@@ -42,9 +38,6 @@ class UsuarioController extends BaseController{
             $error_bool = $this->validate(
                 [
                     'nombre'    =>    'required',
-                    'email'    =>    'required|valid_email',
-                    'password' =>    'required',
-                    'rol' =>    'required',
                 ],
                 [   // Errors Custom
                     'nombre' => [
@@ -61,44 +54,27 @@ class UsuarioController extends BaseController{
                 if ($validation->getError('nombre')) {
                     $nombre_error = $validation->getError('nombre');
                 }
-
-                if ($validation->getError('email')) {
-                    $email_error = $validation->getError('email');
-                }
-
-                if ($validation->getError('password')) {
-                    $password_error = $validation->getError('password');
-                }
-                if ($validation->getError('rol')) {
-                    $rol_error = $validation->getError('rol');
-                }
             } else {
                 //NO HAY ERROR
                 $success = 'yes';
                 if ($this->request->getVar('action') == 'Add') {//Agregar
-                    $crudModel = new Usuario();
+                    $crudModel = new Rol();
                     // ========== INSERT INTO NOMBRE DE TABLA========== 
                     $crudModel->save([
                         'nombre'      =>  $this->request->getVar('nombre'),
-                        'apellidos'      =>  $this->request->getVar('apellidos'),
-                        'email'       =>  $this->request->getVar('email'),
-                        'password'    =>  $this->request->getVar('password'),
-                        'idRol'    =>  $this->request->getVar('rol'),
+                        'descripcion'      =>  $this->request->getVar('descripcion'),
                         'estado'    =>  $this->request->getVar('estado'),
                     ]);
                     $message = 'Guardado Correctamente!';
                 }
 
                 if ($this->request->getVar('action') == 'Edit') {//Editar
-                    $crudModel = new Usuario();
+                    $crudModel = new Rol();
 
                     $id = $this->request->getVar('hidden_id');
                     $data = [
                         'nombre'      =>  $this->request->getVar('nombre'),
-                        'apellidos'      =>  $this->request->getVar('apellidos'),
-                        'email'     =>  $this->request->getVar('email'),
-                        'password'    =>  $this->request->getVar('password'),
-                        'idRol'    =>  $this->request->getVar('rol'),
+                        'descripcion'      =>  $this->request->getVar('descripcion'),
                         'estado'    =>  $this->request->getVar('estado'),
                         'updated_at'    =>  getDatetimeDB(),
                     ];
@@ -111,10 +87,7 @@ class UsuarioController extends BaseController{
             //data salida -> Array
             $data = array(
                 'nombre_error'    =>    $nombre_error,
-                'apellidos_error'    =>    $apellidos_error,
-                'email_error'    =>    $email_error,
-                'password_error'    =>    $password_error,
-                'rol_error'    =>    $rol_error,
+                'descripcion_error'    =>    $descripcion_error,
 
                 'error'            =>    $error,
                 'success'        =>    $success,
@@ -127,7 +100,7 @@ class UsuarioController extends BaseController{
 
     function fetch_single_data(){
         if ($this->request->getVar('id')) {
-            $crudModel = new Usuario();
+            $crudModel = new Rol();
             $data = $crudModel->where('id', $this->request->getVar('id'))->first();
             echo json_encode($data);
         }
@@ -136,27 +109,10 @@ class UsuarioController extends BaseController{
     function delete(){
         if ($this->request->getVar('id')) {
             $id = $this->request->getVar('id');
-            $crudModel = new Usuario();
+            $crudModel = new Rol();
             // DELETE -> METODOS DE CODEIGNITER TIPO ORM 
             $crudModel->where('id', $id)->delete($id);
             echo 1;
         }
     }
-
-    //FETCH ROLES USANDO SIN AJAX
-    function fetchRoles(){
-		$user=new Usuario();
-        $datos=$user->fetchRoles();
-        $output=[
-            'roles'=>$datos
-        ];
-        return $output;
-	}
-
-    //FETCH ROLES USANDO AJAX
-    function fetchRoles2(){
-		$user=new Usuario();
-        $datos=$user->fetchRoles();
-        echo json_encode($datos);
-	}
 }
